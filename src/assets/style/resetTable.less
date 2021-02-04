@@ -1,0 +1,44 @@
+ /deep/ .el-table,
+.el-table__expanded-cell {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/deep/ .el-table th {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/deep/ .el-table tr {
+  background-color: rgba(255, 255, 255, 0);
+}
+/deep/ .el-table td,
+/deep/ .el-table th.is-leaf {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+/deep/ .el-table thead {
+  color: #ddd;
+  font-weight: normal;
+}
+/deep/ .el-table {
+  color: #ddd;
+}
+/deep/ .el-table__body tr:hover > td {
+  // background-color: rgba(0, 113, 186, 0.8);
+  background-color: rgba(0, 113, 186, 0);
+}
+.el-table--border::after,
+.el-table--group::after,
+.el-table::before {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+/deep/ .el-table__header tr,
+/deep/ .el-table__header th {
+  padding: 0;
+  height: 40px;
+}
+/deep/ .el-table__body tr,
+/deep/ .el-table__body td {
+  padding: 0;
+  height: 60px;
+}
+/deep/ .el-table__body-wrapper {
+  border-top: 1px solid #0f1e3c;
+  border-bottom: 1px solid #0f1e3c;
+}
