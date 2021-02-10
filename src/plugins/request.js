@@ -6,10 +6,10 @@ import router from "../router";
 import { Toast } from "vant";
 
 const service = axios.create({
-  // baseURL: `${process.env.VUE_APP_BASE_API}${
-  //   process.env.NODE_ENV === "development" ? "/api" : ""
-  // }`,
-  baseURL: `${process.env.VUE_APP_BASE_API}`,
+  baseURL: `${process.env.VUE_APP_BASE_API}${
+    process.env.NODE_ENV === "development" ? "/api" : ""
+  }`,
+  // baseURL: `${process.env.VUE_APP_BASE_API}`,
   // baseURL:'http://8.133.177.11',
   timeout: 50000,
 });

@@ -12,6 +12,14 @@ export default {
   props: {
     item: Object,
   },
+  watch: {
+    item: {
+      handler(n) {
+        this.draw();
+      },
+      deep: true,
+    },
+  },
   data() {
     return {
       id: "chart" + Math.random().toString(4).substr(2),
@@ -25,7 +33,7 @@ export default {
       charts.createEchart(
         `#${this.id}`,
         "gauge",
-        options[this.item.componentName](this.item.name, this.item.value)
+        options[this.item.componentName](this.item.name, Number(this.item.value.toFixed(0)))
       );
     },
   },

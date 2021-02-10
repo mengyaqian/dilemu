@@ -36,8 +36,7 @@ import controlLibrary from "@/util/controlLibrary";
 import {
   createSocket,
   oncloseWS,
-  onmessageWS,
-  onsendWS,
+  onmessageWS
 } from "@/util/websocket";
 
 export default {
@@ -99,7 +98,6 @@ export default {
           message: "是否切换开关？",
         })
         .then(() => {
-          // this.checked = checked;
           item.switchState = v;
           this.changeWidget(item);
         });
@@ -108,8 +106,7 @@ export default {
       const res = await UpdateWidget({ widget: item });
       if (res) {
         this.$toast.success("更新成功");
-      } 
-      this.getList();
+      }
     },
     go(wType) {
       //1 窗帘方面 2数据图表方面
@@ -126,6 +123,29 @@ export default {
     },
     handleWebsocket(msg) {
       console.log(msg);
+      const data = msg.detail.data.data ? JSON.parse(msg.detail.data.data) : {};
+
+      const { wNumber, value } = data.data;
+
+      // console.log(wNumber,value)
+      try {
+        this.switchArr.forEach((item) => {
+          if (item.wNumber == wNumber) {
+            item.switchState =
+              typeof value === "boolean" ? value : item.switchState;
+            new Error("StopIteration");
+          }
+        });
+      } catch (error) {}
+      try {
+        this.showNunArr.forEach((item,index) => {
+          if (item.wNumber == wNumber) {
+            let v = typeof value === "number" ? value : item.value;
+            this.$set(this.showNunArr[index],'value',v)
+            new Error("StopIteration");
+          }
+        });
+      } catch (error) {}
     },
   },
 };

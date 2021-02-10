@@ -5,12 +5,15 @@ let Socket = "";
 //process.env.NODE_ENV == 'development'
 
 // let hosts = window.location.host.split(":")[0];
-// let WSS_URL =  "ws://" + hosts + ":8001";
+// let WSS_URL =  "ws://" + hosts;
+// let WSS_URL =  "ws://" + hosts + ":2020";
+// console.log(WSS_URL)
 // let WSS_URL =`ws://${window.location.host}`;
 // if(process.env.NODE_ENV == 'development'){
 //   WSS_URL =`ws://${process.env.VUE_APP_WS}`;
 // }
 let WSS_URL = "ws://8.133.177.11:2020";
+var client = 'classroom0000001';
 
 /**建立连接 */
 export function createSocket(url) {
@@ -21,6 +24,7 @@ export function createSocket(url) {
     Socket.onmessage = onmessageWS;
     Socket.onerror = onerrorWS;
     Socket.onclose = oncloseWS;
+    // Socket.send = onsendWS;
   } else {
     console.log("websocket已连接");
   }
@@ -28,6 +32,7 @@ export function createSocket(url) {
 /**打开WS之后发送心跳 */
 export function onopenWS() {
   console.log("连接成功");
+  Socket.send(JSON.stringify({'type':'open', 'data':{'name':client}}));
 }
 /**连接失败重连 */
 export function onerrorWS() {
@@ -35,17 +40,18 @@ export function onerrorWS() {
     Socket.close();
   }
   Socket = "";
-  createSocket(); //重连
+  // createSocket(); //重连
 }
 /**WS数据接收统一处理 */
 export function onmessageWS(e) {
-  console.log(e)
+  // console.log(e)
   window.dispatchEvent(
     new CustomEvent("onmessageWS", {
       detail: {
         data: e,
       },
     })
+
   );
 }
 
