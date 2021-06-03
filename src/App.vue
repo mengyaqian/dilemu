@@ -14,6 +14,7 @@ export default {
   name: "app",
   components: { Back },
   data() {
+    ////
     return {
       balcklist: ["/login", "/control"],
     };
