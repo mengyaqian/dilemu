@@ -1,6 +1,6 @@
 <template>
   <div class="control-info">
-    <!-- 其他控件 -->
+    <!-- 其他控件   -->
     <section class="other-control" style="padding-top: 20px">
       <div class="other-list">
         <div v-for="(item, index) of switchArr" :key="index">

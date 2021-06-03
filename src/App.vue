@@ -14,9 +14,9 @@ export default {
   name: "app",
   components: { Back },
   data() {
-    //////////
+    //////////abc
     return {
-      //sds
+      //sdsss
       balcklist: ["/login", "/control"],
     };
   },
